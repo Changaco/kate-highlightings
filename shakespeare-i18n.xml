@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="Shakespeare i18n"
+          version="1.0"
+          kateversion="2.4"
+          section="Other"
+          extensions="*.msg"
+          mimetype="text/plain"
+          indenter="none"
+          casesensitive="1"
+          author="Changaco (changaco@changaco.oy.lc)"
+          license="LGPL">
+
+<highlighting>
+  <contexts>
+    <context name="normal" attribute="Text" lineEndContext="#stay">
+      <DetectChar attribute="Comment" context="comment" char="#" column="0" />
+      <RegExpr attribute="MsgId" context="msg" String="[A-Z][\w']*" column="0" />
+    </context>
+    <context name="msg" attribute="Text" lineEndContext="#pop">
+      <DetectSpaces/>
+      <RegExpr attribute="MsgArg" context="msgArg" String="[a-z][\w']*" />
+      <DetectChar attribute="Special" context="msgBody" char=":" />
+    </context>
+    <context name="msgArg" attribute="Error" lineEndContext="#pop">
+      <DetectChar attribute="Special" context="msgArgType" char="@" />
+      <DetectChar lookAhead="true" context="#pop" char=":" />
+      <DetectSpaces lookAhead="true" context="#pop" />
+    </context>
+    <context name="msgArgType" attribute="Error" lineEndContext="#pop">
+      <RegExpr attribute="MsgArgType" context="#stay" String="[A-Z][\w']*" />
+      <DetectChar lookAhead="true" context="#pop#pop" char=":" />
+      <DetectSpaces lookAhead="true" context="#pop#pop" />
+    </context>
+    <context name="msgBody" attribute="Text" lineEndContext="#pop#pop">
+      <RegExpr attribute="Interpolation" context="interpolation" String="[#_]\{"/>
+    </context>
+    <context name="comment" attribute="Comment" lineEndContext="#pop" />
+    <context name="interpolation" attribute="Interpolated" lineEndContext="#pop">
+      <DetectChar attribute="Interpolation" context="#pop" char="}"/>
+    </context>
+  </contexts>
+  <itemDatas>
+    <itemData name="Text" defStyleNum="dsNormal" spellChecking="true" />
+    <itemData name="Error" defStyleNum="dsError" spellChecking="false" />
+    <itemData name="MsgId" defStyleNum="dsNormal" spellChecking="false" />
+    <itemData name="MsgArg" defStyleNum="dsNormal" spellChecking="false" />
+    <itemData name="MsgArgType" defStyleNum="dsDataType" spellChecking="false" />
+    <itemData name="Interpolation" defStyleNum="dsChar" spellChecking="false" />
+    <itemData name="Interpolated" defStyleNum="dsNormal" spellChecking="false" />
+    <itemData name="Special" defStyleNum="dsComment" spellChecking="false" />
+    <itemData name="Comment" defStyleNum="dsComment" spellChecking="true" />
+  </itemDatas>
+</highlighting>
+
+<general>
+<!--   <folding indentationsensitive="1"/> -->
+  <comments>
+    <comment name="singleLine" start="#" />
+  </comments>
+</general>
+
+</language>

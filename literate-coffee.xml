@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="Literate CoffeeScript"
+          version="1.0"
+          kateversion="2.4"
+          section="Scripts"
+          extensions="*.litcoffee;*.lcoffee"
+          mimetype="text/x-coffeescript;application/x-coffeescript"
+          indenter="python"
+          casesensitive="1"
+          author="Changaco (changaco@changaco.oy.lc)"
+          license="LGPL">
+
+<highlighting>
+  <contexts>
+    <context name="Text" attribute="Text" lineEndContext="#stay">
+      <StringDetect attribute="Text" context="Code" String="    " column="0" />
+    </context>
+    <context name="Code" attribute="Text" lineEndContext="#pop">
+      <IncludeRules context="##CoffeeScript" />
+    </context>
+  </contexts>
+  <itemDatas>
+    <itemData name="Text" defStyleNum="dsNormal" spellChecking="true" />
+  </itemDatas>
+</highlighting>
+</language>

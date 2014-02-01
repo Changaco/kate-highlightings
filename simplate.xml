@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+
+<language name="Aspen Simplate"
+          version="1.0"
+          kateversion="2.4"
+          section="Other"
+          extensions="*.spt"
+          mimetype="text/x-simplate"
+          indenter="python"
+          casesensitive="1"
+          author="Changaco (changaco@changaco.oy.lc)"
+          license="LGPL">
+
+<highlighting>
+  <contexts>
+    <context name="Page1" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="PageSeparator" context="#pop#Page2" String="^\[-{3,}\]$" />
+      <RegExpr attribute="" context="#pop#PageNegotiated" String="^\[-{3,}\]" lookAhead="true" />
+      <IncludeRules context="##Python" />
+    </context>
+    <context name="#Page2" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop#PageNegotiated" String="^\[-{3,}\]" lookAhead="true" />
+      <IncludeRules context="##Python" />
+    </context>
+    <context name="#PageNegotiated" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\] +text/html( +via +\w+)?" />
+      <RegExpr attribute="PageSeparator" context="PagePlain" String="^\[-{3,}\] +text/plain( +via +\w+)?" />
+      <RegExpr attribute="PageSeparator" context="PageUnknown" String="^\[-{3,}\].+" />
+      <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\]$" />
+    </context>
+    <context name="PageHTML" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
+      <IncludeRules context="##HTML" />
+    </context>
+    <context name="PagePlain" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
+    </context>
+    <context name="PageUnknown" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
+    </context>
+  </contexts>
+  <itemDatas>
+    <itemData name="Page" defStyleNum="dsNormal" spellChecking="false" />
+    <itemData name="PageSeparator" defStyleNum="dsRegionMarker" spellChecking="false" />
+  </itemDatas>
+</highlighting>
+</language>
