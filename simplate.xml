@@ -25,6 +25,7 @@
     </context>
     <context name="#PageNegotiated" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\] +text/html( +via +\w+)?" />
+      <RegExpr attribute="PageSeparator" context="PageXML" String="^\[-{3,}\] +(\w+/([\w.-]+\+)?xml)( +via +\w+)?" />
       <RegExpr attribute="PageSeparator" context="PagePlain" String="^\[-{3,}\] +text/plain( +via +\w+)?" />
       <RegExpr attribute="PageSeparator" context="PageUnknown" String="^\[-{3,}\].+" />
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\]$" />
@@ -32,6 +33,10 @@
     <context name="PageHTML" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
       <IncludeRules context="##HTML" />
+    </context>
+    <context name="PageXML" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
+      <IncludeRules context="##XML" />
     </context>
     <context name="PagePlain" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
