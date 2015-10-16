@@ -27,6 +27,7 @@
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\] +text/html( +via +\w+)?" />
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\] +([^ ]+ +)?via +\w*html\w*" />
       <RegExpr attribute="PageSeparator" context="PageXML" String="^\[-{3,}\] +(\w+/([\w.-]+\+)?xml)( +via +\w+)?" />
+      <RegExpr attribute="PageSeparator" context="PageJS" String="^\[-{3,}\] +application/javascript( +via +\w+)?" />
       <RegExpr attribute="PageSeparator" context="PagePlain" String="^\[-{3,}\] +text/plain( +via +\w+)?" />
       <RegExpr attribute="PageSeparator" context="PageUnknown" String="^\[-{3,}\].+" />
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\]$" />
@@ -38,6 +39,10 @@
     <context name="PageXML" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
       <IncludeRules context="##XML" />
+    </context>
+    <context name="PageJS" attribute="Normal" lineEndContext="#stay">
+      <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
+      <IncludeRules context="Normal##JavaScript" />
     </context>
     <context name="PagePlain" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
