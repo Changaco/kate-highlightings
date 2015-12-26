@@ -17,11 +17,11 @@
     <context name="Page1" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="PageSeparator" context="#pop#Page2" String="^\[-{3,}\]$" />
       <RegExpr attribute="" context="#pop#PageNegotiated" String="^\[-{3,}\]" lookAhead="true" />
-      <IncludeRules context="##Python" />
+      <IncludeRules context="##Python" includeAttrib="true" />
     </context>
     <context name="#Page2" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop#PageNegotiated" String="^\[-{3,}\]" lookAhead="true" />
-      <IncludeRules context="##Python" />
+      <IncludeRules context="##Python" includeAttrib="true" />
     </context>
     <context name="#PageNegotiated" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="PageSeparator" context="PageHTML" String="^\[-{3,}\] +text/html( +via +\w+)?" />
@@ -34,17 +34,17 @@
     </context>
     <context name="PageHTML" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
-      <IncludeRules context="##HTML" />
+      <IncludeRules context="##HTML" includeAttrib="true" />
     </context>
     <context name="PageXML" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
-      <IncludeRules context="##XML" />
+      <IncludeRules context="##XML" includeAttrib="true" />
     </context>
     <context name="PageJS" attribute="Normal" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
-      <IncludeRules context="Normal##JavaScript" />
+      <IncludeRules context="Normal##JavaScript" includeAttrib="true" />
     </context>
-    <context name="PagePlain" attribute="Normal" lineEndContext="#stay">
+    <context name="PagePlain" attribute="Text" lineEndContext="#stay">
       <RegExpr attribute="" context="#pop" String="^\[-{3,}\]" lookAhead="true" />
     </context>
     <context name="PageUnknown" attribute="Normal" lineEndContext="#stay">
@@ -52,7 +52,7 @@
     </context>
   </contexts>
   <itemDatas>
-    <itemData name="Page" defStyleNum="dsNormal" spellChecking="false" />
+    <itemData name="Text" defStyleNum="dsNormal" spellChecking="true" />
     <itemData name="PageSeparator" defStyleNum="dsRegionMarker" spellChecking="false" />
   </itemDatas>
 </highlighting>
