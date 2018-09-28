@@ -52,6 +52,7 @@
     </context>
   </contexts>
   <itemDatas>
+    <itemData name="Normal" defStyleNum="dsNormal" spellChecking="false" />
     <itemData name="Text" defStyleNum="dsNormal" spellChecking="true" />
     <itemData name="PageSeparator" defStyleNum="dsRegionMarker" spellChecking="false" />
   </itemDatas>
